@@ -14,7 +14,7 @@ export class SignupPage implements OnInit {
   ionicForm: FormGroup;
 
 
-  constructor(private toastController: ToastController,private loadingController: LoadingController,private authService:AuthServiceService,private router: Router, public formBuilder: FormBuilder) { 
+  constructor(private toastController: ToastController,private loadingController: LoadingController,private authService:AuthServiceService,private router: Router, public formBuilder: FormBuilder) {
 
   }
 
@@ -40,7 +40,7 @@ export class SignupPage implements OnInit {
         ],
       ],
       password: ['', [
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
         Validators.required,
       ],
     ],
@@ -54,7 +54,7 @@ export class SignupPage implements OnInit {
       this.router.navigate(['/home'])
     })
   }
- 
+
   async signUP(){
     const loading = await this.loadingController.create();
     await loading.present();
@@ -75,12 +75,12 @@ export class SignupPage implements OnInit {
     }
   }
   signUpUsingPhonenumber(contact:string){
-    
+
     this.authService.signInWithPhoneNumber(contact)
   }
   async presentToast(message: undefined) {
     console.log(message);
-    
+
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,
